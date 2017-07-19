@@ -58,7 +58,7 @@ gulp.task('browser-sync', function() {
 		server: {
 			baseDir: 'app'
 		},
-		notify: false
+		/*notify: false*/
 	});
 });
 
@@ -72,9 +72,15 @@ gulp.task('clean', function() {
 
 /*---------------------------------------------------------------------------*/
 
+/*---------------------------Cleaning images cache---------------------------*/
+
 gulp.task('clear', function() {
 	return cache.clearAll();
 });
+
+/*---------------------------------------------------------------------------*/
+
+/*----------------------Images resize and optimization-----------------------*/
 
 gulp.task('img', function() {
 	return gulp.src('app/img/**/*')
@@ -85,12 +91,15 @@ gulp.task('img', function() {
 		use: [pngquant()]
 	})))
 		.pipe(gulp.dest('dist/img'));
-	});
+});
+
+/*---------------------------------------------------------------------------*/
 
 /*---------Watching for changes in files and then reload browsers------------*/
 
 gulp.task('watch', ['browser-sync', 'sass'], function() {  /*after sass we can write 'scripts' */
 	gulp.watch('app/sass/**/*.sass', ['sass']);
+	gulp.watch('app/css/**/*.css', browserSync.reload);
 	gulp.watch('app/*.html', browserSync.reload);
 	gulp.watch('app/js/**/*.js', browserSync.reload);
 });

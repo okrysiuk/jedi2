@@ -14,12 +14,13 @@
 }
 .my {
   font-family: 'myFont';
-  font-size: 32px;
+  font-size: 26px;
   display: inline-block;
   font-style: normal;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-transform: none;
 }
 
 .my.my_a::before {
